@@ -22,7 +22,7 @@ Log.Logger = new LoggerConfiguration()
 
 try
 {
-    Log.Information("Starting Recipe Manager API");
+    Log.Information("Starting Dishwise API");
 
     var builder = WebApplication.CreateBuilder(args);
 

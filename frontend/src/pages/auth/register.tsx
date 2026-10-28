@@ -5,7 +5,7 @@ import { API_URL } from "../../../config";
 
 export default function Register() {
   useEffect(() => {
-    document.title = "Recipe Manager - Register";
+    document.title = "Dishwise - Register";
   }, []);
 
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-# Recipe Manager
+# Dishwise
 
 A full-stack recipe manager. Users can create, browse, edit and delete recipes, organise them into categories, and import recipes from a web URL using OpenAI to extract the ingredients and steps.
 

@@ -10,7 +10,7 @@ import type { Recipe } from "../../types/Recipe";
 
 const RecipeDetails = () => {
   useEffect(() => {
-    document.title = "Recipe Manager - Details";
+    document.title = "Dishwise - Details";
   }, []);
 
   const { id } = useParams<{ id: string }>();

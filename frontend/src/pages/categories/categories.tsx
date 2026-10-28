@@ -9,7 +9,7 @@ import "../../App.css";
 
 const Categories = () => {
   useEffect(() => {
-    document.title = "Recipe Manager - Manage Categories";
+    document.title = "Dishwise - Manage Categories";
   }, []);
 
   const {

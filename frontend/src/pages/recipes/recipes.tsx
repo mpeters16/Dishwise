@@ -25,7 +25,7 @@ const Recipes = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    document.title = "Recipe Manager - Recipes";
+    document.title = "Dishwise - Recipes";
 
     const fetchData = async () => {
       setLoading(true);
