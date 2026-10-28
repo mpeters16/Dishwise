@@ -76,3 +76,7 @@ npm run build
 | `FRONTEND_URL` | Extra allowed CORS origin in deployed environments |
 
 On Render these are supplied as environment variables using the `Section__Key` form.
+
+## Author
+
+Built by **Maria**.
