@@ -1,0 +1,368 @@
+@import "bootstrap/dist/css/bootstrap.css";
+
+:root {
+  --accent: #e85c3b;          
+  --accent-dark: #b84a2d;
+  --panel-bg: #fff7f2;      
+  --panel-border: #ffe2cc;
+  --text-dark: #4a2e1f;
+  --radius: 14px;
+}
+
+/* Center the app and constrain pages to a consistent width */
+#root {
+  /* Set a single centered column for the whole app so every page shares the same width */
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left; /* Avoid centering all text globally to prevent awkward layout changes */
+}
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Ensure the Bootstrap .container used by pages fills the centered column
+   and keeps a consistent inner padding so page width does not jump. */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+h1{
+    font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+}
+
+.subheading {
+  font-weight: 600;
+  color: var(--accent-dark);
+  margin-bottom: 16px;
+}
+
+.panel {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+input[type="email"],
+input[type="password"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 10px;
+  background: var(--accent-dark);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  color: #000;
+  background: var(--panel-border);
+}
+
+.error {
+  color: #d32f2f;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.btn {
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-weight: 600;
+  border: none;
+}
+
+.btn:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
+.input,
+.textarea,
+.select {
+  border-radius: var(--radius);
+}
+
+a {
+  font-weight: 500;
+  color: #e85c3b;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #e85c3b;
+}
+
+.greyPanel{
+   background: #fafafa;
+   border: 1px solid #eee;
+   border-radius: 8px;
+}
+
+.text-primary{
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.text-secondary{
+  background: var(--accent);
+  color: white;
+  border-radius: var(--radius);
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.badge-accent{
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--accent);
+  border-radius: var(--radius);
+}
+
+/* ============================================================
+   Orange Theme — Bootstrap overrides
+   ============================================================ */
+
+/* Primary button → orange */
+.btn-primary {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--accent-dark) !important;
+  border-color: var(--accent-dark) !important;
+  color: #fff !important;
+}
+
+/* Outline-primary button → orange outline */
+.btn-outline-primary {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus,
+.btn-outline-primary:active {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* Accent button (custom class used in categories/recipes) */
+.btn-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+  color: #fff;
+}
+
+/* Accent outline button */
+.btn-accent-outline {
+  background-color: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.btn-accent-outline:hover,
+.btn-accent-outline:focus {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+/* Delete button — warm dark red, clearly distinct from orange */
+.btn-delete {
+  background-color: #c0392b;
+  border: 2px solid #c0392b;
+  color: #fff;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.btn-delete:hover,
+.btn-delete:focus {
+  background-color: #96281b;
+  border-color: #96281b;
+  color: #fff;
+}
+
+/* Override Bootstrap btn-danger to match our delete colour */
+.btn-danger,
+.btn-outline-danger {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #c0392b;
+  --bs-btn-border-color: #c0392b;
+  --bs-btn-hover-bg: #96281b;
+  --bs-btn-hover-border-color: #96281b;
+  --bs-btn-active-bg: #96281b;
+  border-radius: var(--radius) !important;
+}
+.btn-outline-danger {
+  --bs-btn-color: #c0392b;
+  --bs-btn-bg: transparent;
+  --bs-btn-hover-color: #fff;
+}
+
+/* btn-success → warm muted green */
+.btn-success {
+  background-color: #5a7a52 !important;
+  border-color: #5a7a52 !important;
+  color: #fff !important;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+.btn-success:hover,
+.btn-success:focus {
+  background-color: #445e3e !important;
+  border-color: #445e3e !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   Pagination — full orange theme (replaces Bootstrap blue)
+   ============================================================ */
+.pagination .page-link {
+  color: var(--accent);
+  border-color: var(--panel-border);
+  border-radius: 6px;
+  margin: 0 2px;
+  font-weight: 500;
+  transition: background-color 0.15s, color 0.15s;
+}
+.pagination .page-link:hover {
+  background-color: var(--panel-bg);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+.pagination .page-item.active .page-link {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+  font-weight: 700;
+}
+.pagination .page-item.disabled .page-link {
+  color: #ccc;
+  border-color: #eee;
+  background-color: #fafafa;
+}
+/* Focus ring in accent colour */
+.pagination .page-link:focus {
+  box-shadow: 0 0 0 0.2rem rgba(232, 92, 59, 0.3);
+}
+
+/* ============================================================
+   Table — accent header
+   ============================================================ */
+.accent-table thead tr {
+  background-color: var(--panel-bg);
+  border-bottom: 2px solid var(--panel-border);
+}
+.accent-table thead th {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+/* Light badge for sub-categories */
+.badge-accent-light {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  font-size: 0.75em;
+  font-weight: 600;
+  color: var(--accent-dark);
+  background-color: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+}
+
+/* ============================================================
+   Form controls — accent focus ring
+   ============================================================ */
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(232, 92, 59, 0.2);
+}

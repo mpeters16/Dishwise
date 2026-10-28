@@ -1,0 +1,23 @@
+# Secrets - never commit. Store real values with `dotnet user-secrets` or environment variables.
+.env
+.env.*
+!.env.example
+
+# Build outputs
+**/bin/
+**/obj/
+*.vsix
+
+# IDE
+.vs/
+*.user
+*.suo
+
+# Node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
