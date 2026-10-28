@@ -2,7 +2,7 @@ services:
   - type: web
     name: frontend
     env: docker
-    repo: https://github.com/mpeters16/dishwise
+    repo: https://github.com/mpeters16/Dishwise
     dockerfilePath: ./frontend/Dockerfile
     autoDeploy: false
     envVars:
@@ -20,7 +20,7 @@ services:
   - type: web
     name: backend
     env: docker
-    repo: https://github.com/mpeters16/dishwise
+    repo: https://github.com/mpeters16/Dishwise
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     autoDeploy: false
