@@ -6,6 +6,7 @@ import { InstructionsList } from "../../presentation/components/InstructionsList
 import { NutritionInfo } from "../../presentation/components/NutritionInfo";
 import { EditRecipeModal } from "../../presentation/components/EditRecipeModal";
 import { ImageSlider } from "../../presentation/components/ImageSlider";
+import { ConfirmDeleteModal } from "../../presentation/components/ConfirmDeleteModal";
 import type { Recipe } from "../../types/Recipe";
 
 const RecipeDetails = () => {
@@ -23,6 +24,9 @@ const RecipeDetails = () => {
     "ingredients" | "instructions" | "nutrition"
   >("ingredients");
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -40,10 +44,21 @@ const RecipeDetails = () => {
     fetchRecipe();
   }, [id]);
 
-  const deleteRecipe = async () => {
-    if (!window.confirm("Are you sure you want to delete this recipe?")) return;
-    await apiClient.delete(`/recipes/${id}`);
-    navigate("/recipes");
+  const openDeleteModal = () => {
+    setDeleteError("");
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = async () => {
+    setIsDeleting(true);
+    setDeleteError("");
+    try {
+      await apiClient.delete(`/recipes/${id}`);
+      navigate("/recipes");
+    } catch {
+      setDeleteError("Couldn't delete the recipe. Please try again.");
+      setIsDeleting(false);
+    }
   };
 
   if (loading) {
@@ -162,10 +177,19 @@ const RecipeDetails = () => {
         <button className="btn btn-accent" onClick={() => setShowEditModal(true)}>
           Edit Recipe
         </button>
-        <button className="btn btn-delete" onClick={deleteRecipe}>
+        <button className="btn btn-delete" onClick={openDeleteModal}>
           Delete Recipe
         </button>
       </div>
+
+      <ConfirmDeleteModal
+        show={showDeleteModal}
+        recipeTitle={recipe?.title ?? ""}
+        isDeleting={isDeleting}
+        error={deleteError}
+        onConfirm={confirmDelete}
+        onCancel={() => setShowDeleteModal(false)}
+      />
 
       {/* Edit Modal */}
       <EditRecipeModal

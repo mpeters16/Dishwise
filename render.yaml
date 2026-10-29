@@ -6,11 +6,6 @@ services:
     dockerfilePath: ./frontend/Dockerfile
     autoDeploy: false
     envVars:
-      - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: backend
-          property: hostport
       - key: BACKEND_URL
         fromService:
           type: web
@@ -33,9 +28,9 @@ services:
           name: frontend
           property: hostport
       - key: Jwt__Issuer
-        value: RecipeManagerApi
+        value: DishwiseApi
       - key: Jwt__Audience
-        value: RecipeManagerApiUsers
+        value: DishwiseApiUsers
       - key: Jwt__Key
         value: ${JWT_KEY}
       - key: ConnectionStrings__DefaultConnection

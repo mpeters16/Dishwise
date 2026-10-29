@@ -1,13 +1,23 @@
 import { useContext, useState, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useLogin } from "../../presentation/hooks/useLogin";
 import { AuthContext } from "../../presentation/context/AuthContext";
 import { LoadingButton } from "../../presentation/components/LoadingButton";
 
+const getLoginErrorMessage = (err: unknown): string => {
+  if (axios.isAxiosError(err)) {
+    if (!err.response) return "Can't reach the server. Check your connection and try again.";
+    if (err.response.status === 401) return "Invalid username or password.";
+    return "Something went wrong on our side. Please try again.";
+  }
+  return "Login failed. Please try again.";
+};
+
 const Login = () => {
   const navigate = useNavigate();
   const { setLoginState } = useContext(AuthContext);
-  const { login, error: hookError } = useLogin();
+  const { login } = useLogin();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +33,8 @@ const Login = () => {
       const token = await login({ username, password });
       setLoginState(token.token);
       navigate("/recipes");
-    } catch {
-      setError(hookError || "Invalid username or password");
+    } catch (err) {
+      setError(getLoginErrorMessage(err));
     } finally {
       setIsLoading(false);
     }

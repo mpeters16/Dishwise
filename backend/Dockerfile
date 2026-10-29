@@ -3,19 +3,19 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
 # Copy project files for restore
-COPY RecipeManager.Api/RecipeManager.Api.csproj RecipeManager.Api/
-COPY RecipeManager.Application/RecipeManager.Application.csproj RecipeManager.Application/
-COPY RecipeManager.Domain/RecipeManager.Domain.csproj RecipeManager.Domain/
-COPY RecipeManager.Infrastructure/RecipeManager.Infrastructure.csproj RecipeManager.Infrastructure/
+COPY Dishwise.Api/Dishwise.Api.csproj Dishwise.Api/
+COPY Dishwise.Application/Dishwise.Application.csproj Dishwise.Application/
+COPY Dishwise.Domain/Dishwise.Domain.csproj Dishwise.Domain/
+COPY Dishwise.Infrastructure/Dishwise.Infrastructure.csproj Dishwise.Infrastructure/
 
 # Restore dependencies
-RUN dotnet restore RecipeManager.Api/RecipeManager.Api.csproj
+RUN dotnet restore Dishwise.Api/Dishwise.Api.csproj
 
 # Copy all source code
 COPY . .
 
 # Publish
-RUN dotnet publish RecipeManager.Api/RecipeManager.Api.csproj -c Release -o /app/publish
+RUN dotnet publish Dishwise.Api/Dishwise.Api.csproj -c Release -o /app/publish
 
 # Stage 2: Runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
@@ -26,4 +26,4 @@ EXPOSE 10000
 ENV ASPNETCORE_URLS=http://+:10000
 ENV DOTNET_RUNNING_IN_CONTAINER=true
 
-CMD ["dotnet", "RecipeManager.Api.dll"]
+CMD ["dotnet", "Dishwise.Api.dll"]

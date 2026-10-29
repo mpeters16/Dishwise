@@ -9,6 +9,10 @@ import { ImportRecipeModal } from "../../presentation/components/ImportRecipeMod
 import { AddRecipeModal } from "../../presentation/components/AddRecipeModal";
 import { AuthContext } from "../../presentation/context/AuthContext";
 
+// The photo to show on a card: the primary image, or the first one if none is marked
+const getCoverImage = (recipe: Recipe) =>
+  recipe.images?.find((image) => image.isPrimary) ?? recipe.images?.[0];
+
 const Recipes = () => {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -236,33 +240,38 @@ const Recipes = () => {
             </div>
             <div className="row">
               {paginatedRecipes.map((recipe: Recipe) => (
-                <div className="col-md-4 mb-4" key={recipe.id}>
-                  <div className="card h-100">
-                    {recipe.images && recipe.images.length > 0 && (
+                <div className="col-sm-6 col-lg-4 mb-4" key={recipe.id}>
+                  <article className="recipe-card">
+                    {getCoverImage(recipe) ? (
                       <img
-                        src={recipe.images[0].url}
-                        className="card-img-top mb-3"
+                        src={getCoverImage(recipe)?.url}
+                        className="recipe-card__image"
                         alt={recipe.title}
-                        style={{ maxWidth: "400px" }}
                       />
+                    ) : (
+                      <div className="recipe-card__placeholder" aria-hidden="true">
+                        No photo
+                      </div>
                     )}
-                    <div className="card-body h-50">
-                      <h5 className="card-title">
+                    <div className="recipe-card__body">
+                      <h5 className="recipe-card__title">
                         <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
                       </h5>
-                      <p className="card-text">
-                        <strong>Category:</strong>{" "}
-                        {recipe.category ? recipe.category.name : "Unknown"}
+                      <p className="recipe-card__description">
+                        {recipe.description}
                       </p>
-
-                      <Link
-                        to={`/recipes/${recipe.id}`}
-                        className="btn btn-accent"
-                      >
-                        View Recipe
-                      </Link>
+                      <div className="recipe-card__meta">
+                        <span className="badge-accent-light">
+                          {recipe.category ? recipe.category.name : "Uncategorized"}
+                        </span>
+                      </div>
+                      <div className="recipe-card__footer">
+                        <Link to={`/recipes/${recipe.id}`} className="btn btn-accent">
+                          View Recipe
+                        </Link>
+                      </div>
                     </div>
-                  </div>
+                  </article>
                 </div>
               ))}
             </div>

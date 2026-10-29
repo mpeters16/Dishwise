@@ -4,7 +4,8 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Container from "react-bootstrap/Container";
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import "./NavBar.css";
 import { AuthContext } from "../context/AuthContext";
 import { AddRecipeModal } from "./AddRecipeModal";
 import { ImportRecipeModal } from "./ImportRecipeModal";
@@ -16,6 +17,7 @@ import apiClient from "../../api/apiClient";
 
 export default function NavBar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLoggedIn, username, logout } = useContext(AuthContext);
   const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
   const [showImportRecipeModal, setShowImportRecipeModal] = useState(false);
@@ -99,29 +101,32 @@ export default function NavBar() {
         draggable
         pauseOnHover
       />
-      <Navbar expand="lg" className="bg-body-tertiary">
+      <Navbar expand="lg" className="dw-nav">
         <Container>
           <Navbar.Brand href="/">
-            <img src={logo} alt="Dishwise" height="30" />
+            <img src={logo} alt="Dishwise" height="32" />
           </Navbar.Brand>
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
+            <Nav className="me-auto align-items-lg-center">
+              <Nav.Link href="/" active={location.pathname === "/"}>
+                Home
+              </Nav.Link>
 
-              <NavDropdown title="Recipes" id="recipes-nav-dropdown">
+              <NavDropdown
+                title="Recipes"
+                id="recipes-nav-dropdown"
+                active={location.pathname.startsWith("/recipes")}
+              >
                 <NavDropdown.Item href="/recipes">All Recipes</NavDropdown.Item>
                 <NavDropdown.Item href="/recipes?show=my">
                   My Recipes
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
-                <NavDropdown.Item onClick={handleShowAddRecipeModal}>
-                  Add Recipe
-                </NavDropdown.Item>
                 <NavDropdown.Item onClick={handleShowImportRecipeModal}>
-                  Import Recipe From URL
+                  Import from URL
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item href="/categories">
@@ -136,13 +141,35 @@ export default function NavBar() {
                 </NavDropdown>
               )}
 
-              {/* USER MENU */}
+              {/* ACTIONS + USER MENU */}
+              <button
+                type="button"
+                className="btn btn-accent dw-nav__cta ms-lg-3"
+                onClick={handleShowAddRecipeModal}
+              >
+                + New recipe
+              </button>
+
               {!isLoggedIn ? (
-                <Nav.Link href="/login">Login</Nav.Link>
+                <a
+                  href="/login"
+                  className="btn btn-accent-outline dw-nav__cta ms-lg-3"
+                >
+                  Login
+                </a>
               ) : (
                 <NavDropdown
-                  title={username || "Account"}
+                  align="end"
+                  title={
+                    <span className="dw-nav__account">
+                      <span className="dw-nav__avatar" aria-hidden="true">
+                        {(username || "?").charAt(0).toUpperCase()}
+                      </span>
+                      {username || "Account"}
+                    </span>
+                  }
                   id="account-nav-dropdown"
+                  className="ms-lg-2"
                 >
                   <NavDropdown.Item disabled>
                     Logged in as <strong>{username}</strong>

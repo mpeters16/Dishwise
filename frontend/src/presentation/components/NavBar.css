@@ -1,0 +1,125 @@
+/* ============================================================
+   Main navigation
+   ============================================================ */
+.dw-nav {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  padding: 0.6rem 0;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(1.4) blur(8px);
+  border-bottom: 1px solid var(--panel-border);
+  box-shadow: 0 2px 12px rgba(74, 46, 31, 0.06);
+}
+
+.dw-nav .navbar-brand {
+  margin-right: 1.5rem;
+  padding: 0;
+}
+
+/* Links as soft pills */
+.dw-nav .nav-link {
+  color: var(--text-dark);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.dw-nav .nav-link:hover,
+.dw-nav .nav-link:focus-visible {
+  color: var(--accent-dark);
+  background: var(--panel-bg);
+}
+.dw-nav .nav-link.active {
+  color: var(--accent-dark);
+  background: var(--panel-bg);
+  font-weight: 600;
+}
+
+/* Dropdown panels */
+.dw-nav .dropdown-menu {
+  min-width: 14rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(74, 46, 31, 0.12);
+}
+.dw-nav .dropdown-item {
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+.dw-nav .dropdown-item:hover,
+.dw-nav .dropdown-item:focus {
+  background: var(--panel-bg);
+  color: var(--accent-dark);
+}
+.dw-nav .dropdown-item.active,
+.dw-nav .dropdown-item:active {
+  background: var(--accent);
+  color: #fff;
+}
+.dw-nav .dropdown-item.disabled {
+  color: #9a8377;
+}
+.dw-nav .dropdown-divider {
+  border-color: var(--panel-border);
+  margin: 0.4rem 0;
+}
+
+/* Primary call to action */
+.dw-nav__cta {
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* Account chip: avatar initial + name */
+.dw-nav__account {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+.dw-nav__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.dw-nav .navbar-toggler {
+  border: none;
+  padding: 0.35rem 0.6rem;
+}
+.dw-nav .navbar-toggler:focus {
+  box-shadow: 0 0 0 0.2rem rgba(232, 92, 59, 0.25);
+}
+
+/* Mobile: stack the menu and remove the heavy panel shadows */
+@media (max-width: 991.98px) {
+  .dw-nav .navbar-collapse {
+    padding: 0.75rem 0 0.5rem;
+  }
+  .dw-nav .nav-link {
+    padding: 0.6rem 0.25rem;
+  }
+  .dw-nav .dropdown-menu {
+    box-shadow: none;
+    border-color: transparent;
+  }
+  .dw-nav__cta {
+    margin: 0.5rem 0;
+    align-self: flex-start;
+  }
+}

@@ -12,11 +12,11 @@ A full-stack recipe manager. Users can create, browse, edit and delete recipes, 
 
 ```
 backend/
-  RecipeManager.Api             HTTP endpoints, auth setup, Program.cs
-  RecipeManager.Application     Services, DTOs, interfaces
-  RecipeManager.Domain          Entities
-  RecipeManager.Infrastructure  EF Core DbContext, repositories, migrations
-  RecipeManager.Tests           xUnit tests (Moq, FluentAssertions)
+  Dishwise.Api             HTTP endpoints, auth setup, Program.cs
+  Dishwise.Application     Services, DTOs, interfaces
+  Dishwise.Domain          Entities
+  Dishwise.Infrastructure  EF Core DbContext, repositories, migrations
+  Dishwise.Tests           xUnit tests (Moq, FluentAssertions)
 frontend/                       React + TypeScript single-page app
 .github/workflows/              CI/CD pipeline
 ```
@@ -34,7 +34,7 @@ frontend/                       React + TypeScript single-page app
 Secrets are never stored in the repo. Set them with user secrets:
 
 ```bash
-cd backend/RecipeManager.Api
+cd backend/Dishwise.Api
 dotnet user-secrets init
 dotnet user-secrets set "Jwt:Key" "<at least 32 random bytes, base64-encoded>"
 dotnet user-secrets set "ConnectionStrings:DefaultConnection" "<your SQL Server connection string>"

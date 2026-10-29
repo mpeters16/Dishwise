@@ -8,6 +8,3 @@ interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
 
-interface Window {
-  __BACKEND_URL__?: string;
-}

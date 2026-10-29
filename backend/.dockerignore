@@ -4,4 +4,4 @@
 *.user
 *.suo
 Documentation/
-RecipeManager.Tests/
+Dishwise.Tests/
