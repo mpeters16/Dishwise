@@ -2,19 +2,25 @@ import { useState } from "react";
 import {
   formatIngredient,
   isValidIngredient,
+  scaleIngredient,
 } from "../../utils/recipeFormatter";
 import type { Ingredient } from "../../types/Ingredient";
 
 interface IngredientsListProps {
   ingredients?: Ingredient[];
   className?: string;
+  /** Multiplier applied to every quantity, e.g. desired servings / recipe servings */
+  scale?: number;
 }
 
 export const IngredientsList = ({
   ingredients = [],
   className = "",
+  scale = 1,
 }: IngredientsListProps) => {
-  const validIngredients = ingredients.filter(isValidIngredient);
+  const validIngredients = ingredients
+    .filter(isValidIngredient)
+    .map((ing) => scaleIngredient(ing, scale));
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
 
   const toggleIngredient = (idx: number) => {

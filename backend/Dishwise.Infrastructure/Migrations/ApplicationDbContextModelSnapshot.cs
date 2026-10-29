@@ -210,6 +210,9 @@ namespace Dishwise.Infrastructure.Migrations
                     b.Property<int>("PrepTimeMinutes")
                         .HasColumnType("int");
 
+                    b.Property<int?>("Servings")
+                        .HasColumnType("int");
+
                     b.Property<string>("SourceUrl")
                         .HasColumnType("nvarchar(max)");
 

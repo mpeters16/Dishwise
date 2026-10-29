@@ -370,6 +370,8 @@ public class RecipesImportService : IRecipesImportService
             if (totalTime > 0) dto.CookTimeMinutes = totalTime;
         }
 
+        dto.Servings = RecipeYieldParser.Parse(FirstString(recipe, "recipeYield"));
+
         // schema.org recipeCategory is the most explicit meal label; recipeCuisine becomes the subcategory
         dto.MainCategoryName = FirstMainCategory(recipe, "recipeCategory");
         dto.SubCategoryName = FirstString(recipe, "recipeCuisine");

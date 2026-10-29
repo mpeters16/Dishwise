@@ -8,6 +8,7 @@ public class Recipe : BaseEntity
     public string Description { get; set; } = "";
     public int CookTimeMinutes { get; set; } // in minutes
     public int PrepTimeMinutes { get; set; } // in minutes
+    public int? Servings { get; set; } // null when the source doesn't say
     public ICollection<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
     public ICollection<Instruction> Instructions { get; set; } = new List<Instruction>();
     public ICollection<RecipeImage> Images { get; set; } = new List<RecipeImage>();

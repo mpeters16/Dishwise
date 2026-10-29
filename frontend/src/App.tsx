@@ -4,6 +4,7 @@ import Register from "./pages/auth/register";
 import Recipes from "./pages/recipes/recipes";
 import RecipeDetails from "./pages/recipes/recipedetails";
 import Categories from "./pages/categories/categories";
+import ShoppingListPage from "./pages/shopping/ShoppingListPage";
 import "./App.css";
 import { Layout } from "./presentation/components/Layout";
 import NavBar from "./presentation/components/NavBar";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/recipes" element={<Recipes />} />
           <Route path="/recipes/:id" element={<RecipeDetails />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/shopping-list" element={<ShoppingListPage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

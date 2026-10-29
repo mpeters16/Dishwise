@@ -39,6 +39,7 @@ namespace Dishwise.Application.Services
                 Description = recipeDto.Description,
                 PrepTimeMinutes = recipeDto.PrepTimeMinutes,
                 CookTimeMinutes = recipeDto.CookTimeMinutes,
+                Servings = recipeDto.Servings,
                 CategoryId = recipeDto.CategoryId,   // IMPORTANT: use FK, not entity
                 UserId = recipeDto.UserId,
                 SourceUrl = recipeDto.SourceUrl,

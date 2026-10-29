@@ -10,7 +10,8 @@ export interface Recipe {
   description: string;
   prepTimeMinutes: number;
   cookTimeMinutes: number;
-  categoryId: string;             
+  servings?: number | null;
+  categoryId: string;           
   category?: Category;            
   userId: string;               
   ingredients: Ingredient[];
