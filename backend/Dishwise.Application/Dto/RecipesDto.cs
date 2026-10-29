@@ -8,6 +8,7 @@ public class RecipesDto
     public string Description { get; set; } = "";
     public int PrepTimeMinutes { get; set; }
     public int CookTimeMinutes { get; set; }
+    public int? Servings { get; set; }
 
     public Guid UserId { get; set; }
     public Guid CategoryId { get; set; }

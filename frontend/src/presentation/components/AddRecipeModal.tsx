@@ -25,6 +25,7 @@ export const AddRecipeModal = ({
   const [prepTimeMinutes, setPrepTimeMinutes] = useState(0);
   const [cookTimeHours, setCookTimeHours] = useState(0);
   const [cookTimeMinutes, setCookTimeMinutes] = useState(0);
+  const [servings, setServings] = useState<number | "">(4);
   const [categoryId, setCategoryId] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [categories, setCategories] = useState<{ id: string; name: string }[]>(
@@ -63,6 +64,7 @@ export const AddRecipeModal = ({
       formData.append("instructions", instructions);
       formData.append("prepTimeMinutes", prepTimeMinutesTotal.toString());
       formData.append("cookTimeMinutes", cookTimeMinutesTotal.toString());
+      if (servings) formData.append("servings", servings.toString());
       formData.append("categoryId", categoryId);
       formData.append("userId", user.id);
 
@@ -237,6 +239,23 @@ export const AddRecipeModal = ({
                 </Form.Select>
               </div>
             </div>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label className="fw-bold" htmlFor="recipe-servings">
+              Servings
+            </Form.Label>
+            <Form.Control
+              id="recipe-servings"
+              type="number"
+              min={1}
+              max={100}
+              value={servings}
+              onChange={(e) =>
+                setServings(e.target.value === "" ? "" : Math.min(100, Number(e.target.value)))
+              }
+              placeholder="How many does it serve?"
+            />
           </Form.Group>
 
           {error && (

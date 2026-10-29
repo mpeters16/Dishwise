@@ -32,6 +32,7 @@ export const EditRecipeModal = ({
   const [cookTimeMinutes, setCookTimeMinutes] = useState(
     (recipe.cookTimeMinutes || 0) % 60,
   );
+  const [servings, setServings] = useState<number | "">(recipe.servings ?? "");
   const [categoryId, setCategoryId] = useState(recipe.category?.id || "");
   const [ingredients, setIngredients] = useState(
     (recipe.ingredients || [])
@@ -58,6 +59,7 @@ export const EditRecipeModal = ({
       setPrepTimeMinutes((recipe.prepTimeMinutes || 0) % 60);
       setCookTimeHours(Math.floor((recipe.cookTimeMinutes || 0) / 60));
       setCookTimeMinutes((recipe.cookTimeMinutes || 0) % 60);
+      setServings(recipe.servings ?? "");
       setCategoryId(recipe.category?.id || "");
       setIngredients(
         (recipe.ingredients || [])
@@ -90,6 +92,7 @@ export const EditRecipeModal = ({
       formData.append("instructions", instructions);
       formData.append("prepTimeMinutes", prepTotal.toString());
       formData.append("cookTimeMinutes", cookTotal.toString());
+      if (servings) formData.append("servings", servings.toString());
       formData.append("categoryId", categoryId);
 
       const res = await apiClient.put<Recipe>(
@@ -230,6 +233,23 @@ export const EditRecipeModal = ({
                 ))}
               </Form.Select>
             </div>
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label className="fw-bold" htmlFor="edit-recipe-servings">
+              Servings
+            </Form.Label>
+            <Form.Control
+              id="edit-recipe-servings"
+              type="number"
+              min={1}
+              max={100}
+              value={servings}
+              onChange={(e) =>
+                setServings(e.target.value === "" ? "" : Math.min(100, Number(e.target.value)))
+              }
+              placeholder="How many does it serve?"
+            />
           </Form.Group>
 
           {error && (

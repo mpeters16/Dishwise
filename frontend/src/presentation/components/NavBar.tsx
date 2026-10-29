@@ -134,6 +134,13 @@ export default function NavBar() {
                 </NavDropdown.Item>
               </NavDropdown>
 
+              <Nav.Link
+                href="/shopping-list"
+                active={location.pathname.startsWith("/shopping-list")}
+              >
+                Shopping list
+              </Nav.Link>
+
               {/* CATEGORIES MENU - Hierarchical */}
               {!loadingCategories && hierarchicalCategories.length > 0 && (
                 <NavDropdown title="Categories" id="categories-nav-dropdown">

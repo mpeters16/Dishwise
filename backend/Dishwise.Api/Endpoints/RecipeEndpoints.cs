@@ -110,6 +110,7 @@ public static class RecipeEndpoints
                 Description = form["description"].ToString(),
                 PrepTimeMinutes = prepTimeMinutes,
                 CookTimeMinutes = cookTimeMinutes,
+                Servings = int.TryParse(form["servings"].ToString(), out var servings) && servings > 0 ? servings : null,
                 CategoryId = categoryId,
                 UserId = userId,
                 Ingredients = ingredients,
